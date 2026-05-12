@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dad-tcg.example/schemas/year-cards.json",
+  "title": "Dad TCG Year Cards",
+  "description": "The shared anthological deck of dad-life moments revealed one per turn. Per Decision 020.",
+  "type": "object",
+  "required": ["schemaVersion", "yearCards"],
+  "properties": {
+    "schemaVersion": { "type": "string" },
+    "yearCards": { "type": "array", "items": { "$ref": "#/$defs/yearCard" } }
+  },
+  "$defs": {
+    "yearCard": {
+      "type": "object",
+      "required": ["id", "name", "tone", "flavor"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "name": { "type": "string" },
+        "tone": { "type": "string", "enum": ["joyful", "tender", "bumbler", "civic", "generational", "hard"] },
+        "flavor": { "type": "string", "maxLength": 240 },
+        "modifier": { "type": ["object", "null"] }
+      }
+    }
+  }
+}

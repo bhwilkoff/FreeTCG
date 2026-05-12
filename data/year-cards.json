@@ -1,0 +1,202 @@
+{
+  "schemaVersion": "0.1.0",
+  "_note": "28 sample Year cards. Full deck of 50 in M1 follow-on. Modifiers reference EFFECTS.md ops; some are descriptive in v0 and engine-applied in v0.2.",
+  "yearCards": [
+    {
+      "id": "the-saturday-pancake",
+      "name": "The Saturday Pancake",
+      "tone": "joyful",
+      "flavor": "Burned the first one. Got the second one right. The kid ate three.",
+      "modifier": { "op": "first_play_in_zone_captures_moment", "zone": "family", "moment": { "name": "SATURDAY PANCAKE", "flavor": "Burned the first one. Got the second one right." } }
+    },
+    {
+      "id": "hot-lava-living-room",
+      "name": "Hot Lava Living Room",
+      "tone": "joyful",
+      "flavor": "The couch is the only safe place. Has been since you were four.",
+      "modifier": { "op": "play_tagged_capture_moment", "moment": { "name": "HOT LAVA", "flavor": "Hot lava in the living room. Survivors: zero. Couches: heroic." } }
+    },
+    {
+      "id": "the-surprise-trip",
+      "name": "The Surprise Trip",
+      "tone": "joyful",
+      "flavor": "'Get in the car.' 'Where are we going?' 'You'll see.'",
+      "modifier": { "op": "free_zone_move_once", "moment_if_both_move": { "name": "SURPRISE TRIP", "flavor": "Get in the car. We're going." } }
+    },
+    {
+      "id": "sunday-comics",
+      "name": "Sunday Comics",
+      "tone": "joyful",
+      "flavor": "He has never seen a newspaper before. Pick your jaw back up off the floor.",
+      "modifier": { "op": "granddad_kin_capture_moment", "moment": { "name": "SUNDAY COMICS", "flavor": "Three generations on one couch. Nobody understood the newspaper." }, "bidirectional_teaching_discount": 1 }
+    },
+    {
+      "id": "the-bedtime-bit",
+      "name": "The Bedtime Bit",
+      "tone": "joyful",
+      "flavor": "Same story. Same voice for the witch. Same 'oh no, not the witch.' Same kid laughing.",
+      "modifier": { "op": "tag_activates_twice", "tag": "Holding", "zone": "family", "moment_if_kin": { "name": "BEDTIME BIT", "flavor": "Same story. Same voice for the witch." } }
+    },
+    {
+      "id": "the-color-commentary-year",
+      "name": "The Color Commentary Year",
+      "tone": "joyful",
+      "flavor": "And here he comes, eating a bagel, ladies and gentlemen — the man, the myth—",
+      "modifier": { "op": "narrate_play_for_moment", "moment": { "name": "COLOR COMMENTARY", "flavor": "And here he comes, ladies and gentlemen—" } }
+    },
+    {
+      "id": "the-costume-party-at-the-dmv",
+      "name": "The Costume Party (At The DMV)",
+      "tone": "joyful",
+      "flavor": "He didn't get the email about not wearing the costume to the DMV. He's not changing now.",
+      "modifier": { "op": "play_tagged_cost_modifier", "delta": -1, "minimum": 0, "moment_for_play_tagged": { "name": "OUT OF POCKET", "flavor": "Not changing now." } }
+    },
+    {
+      "id": "the-sourdough-year",
+      "name": "The Sourdough Year",
+      "tone": "joyful",
+      "flavor": "The starter has a name. The kid named it. The kid named it Glenn.",
+      "modifier": { "op": "tools_in_zone_pitch_bonus", "zone": "craft", "delta": 1, "moment": { "name": "SOURDOUGH", "flavor": "The starter has a name. It's Glenn." } }
+    },
+    {
+      "id": "the-letter-home",
+      "name": "The Letter Home",
+      "tone": "tender",
+      "flavor": "You wrote the postcard from a parking lot. The breakfast knows.",
+      "modifier": { "op": "long_distance_capture_moment", "moment": { "name": "LETTER HOME", "flavor": "I miss the breakfast. The breakfast knows." }, "connection_cost_modifier": -1 }
+    },
+    {
+      "id": "the-long-hug",
+      "name": "The Long Hug",
+      "tone": "tender",
+      "flavor": "You held it longer than usual. Nobody had to say why.",
+      "modifier": { "op": "holding_smoothing_draw", "threshold_hand": 4, "amount": 1 }
+    },
+    {
+      "id": "sitting-with-sadness",
+      "name": "Sitting With Sadness",
+      "tone": "tender",
+      "flavor": "You didn't fix it. You weren't supposed to. Anything mentionable is manageable.",
+      "modifier": { "op": "listening_capture_moment", "moment": { "name": "SITTING WITH", "flavor": "You sat with them for an hour. You didn't have answers. You stayed." }, "no_missed_year_this_turn": true }
+    },
+    {
+      "id": "the-note-in-the-lunch",
+      "name": "The Note In The Lunch",
+      "tone": "tender",
+      "flavor": "Same joke every Tuesday. They never said they liked it. They never threw the note away.",
+      "modifier": { "op": "tending_strength_bonus", "delta": 1, "moment_if_kin_in_family": { "name": "NOTE IN THE LUNCH", "flavor": "Same joke every Tuesday." } }
+    },
+    {
+      "id": "the-day-my-dad-showed-up",
+      "name": "The Day My Dad Showed Up",
+      "tone": "tender",
+      "flavor": "You don't remember what he said. You remember he was there.",
+      "modifier": { "op": "showing_up_capture_moment", "moment": { "name": "SHOWED UP", "flavor": "You don't remember what he said. You remember he was there." }, "no_disruption_in_self_zones": true }
+    },
+    {
+      "id": "the-forgotten-lunch",
+      "name": "The Forgotten Lunch",
+      "tone": "bumbler",
+      "flavor": "You let him learn the natural consequence. You also drove the lunch over at 11:30.",
+      "modifier": { "op": "mending_cost_modifier", "delta": -1, "moment_if_tending_and_mending": { "name": "FORGOTTEN LUNCH", "flavor": "It only gets better if I sit in the embarrassment." } }
+    },
+    {
+      "id": "the-severe-tire-damage-year",
+      "name": "The Severe Tire Damage Year",
+      "tone": "bumbler",
+      "flavor": "You handled it. Mostly didn't panic. Did not call your wife to come hold your hand.",
+      "modifier": { "op": "faction_strength_bonus", "faction": "Resilience", "delta": 1, "moment": { "name": "HANDLED IT", "flavor": "You are, in fact, an adult who can occasionally play this minor role." } }
+    },
+    {
+      "id": "the-garbage-disposal-year",
+      "name": "The Garbage Disposal Year",
+      "tone": "bumbler",
+      "flavor": "You don't need everything to be a science experiment. You can just throw it away and take the trash out.",
+      "modifier": { "op": "mass_pitch_for_attention" }
+    },
+    {
+      "id": "the-wrong-washer",
+      "name": "The Wrong Washer",
+      "tone": "bumbler",
+      "flavor": "Replaced the wrong washer. Flooded the basement. Laughed first. Then fixed it.",
+      "modifier": { "op": "tinkerer_mending_capture_moment", "zone": "craft", "moment": { "name": "WRONG WASHER", "flavor": "Laughed first. Then fixed it." } }
+    },
+    {
+      "id": "the-1130-bedtime-compromise",
+      "name": "The 11:30 Bedtime Compromise",
+      "tone": "bumbler",
+      "flavor": "You said 9. They asked for 10. You said 9:30. Everyone left at 11:30 happy.",
+      "modifier": { "op": "first_choosing_capture_moment", "moment": { "name": "SLEEP NEGOTIATIONS", "flavor": "Everyone left at 11:30 happy." }, "adapting_strength_bonus": 1 }
+    },
+    {
+      "id": "the-block-party",
+      "name": "The Block Party",
+      "tone": "civic",
+      "flavor": "You brought the speakers. Nobody asked. Nobody complained. The kid danced.",
+      "modifier": { "op": "double_resonance_in_zone", "zone": "community", "moment_if_both_have_2": { "name": "BLOCK PARTY", "flavor": "Nobody asked. Nobody complained. The kid danced." } }
+    },
+    {
+      "id": "coaching-practice",
+      "name": "Coaching Practice",
+      "tone": "civic",
+      "flavor": "You weren't sure they'd listen. They listened. Don't admit you were nervous.",
+      "modifier": { "op": "tag_resonance_bonus_in_zone", "tag": "Teaching", "zone": "community" }
+    },
+    {
+      "id": "the-field-trip",
+      "name": "The Field Trip",
+      "tone": "civic",
+      "flavor": "You volunteered. You haven't slept. The bus driver asks if you're a parent or a chaperone. The kid claims you twice.",
+      "modifier": { "op": "faction_strength_bonus", "faction": "Connection", "delta": 1, "moment_if_kin_with_connection_dad": { "name": "FIELD TRIP", "flavor": "The kid claimed you twice." } }
+    },
+    {
+      "id": "the-tutor-hour",
+      "name": "The Tutor Hour",
+      "tone": "civic",
+      "flavor": "They don't know how to do their math. You don't either. You learn it together.",
+      "modifier": { "op": "bidirectional_teaching_double_activate", "moment_if_wondering_played": { "name": "TUTOR HOUR", "flavor": "I don't know. What do you think?" } }
+    },
+    {
+      "id": "calling-the-old-man",
+      "name": "Calling The Old Man",
+      "tone": "generational",
+      "flavor": "You called because the kid asked the question you didn't know how to answer. The old man knew. Of course he knew.",
+      "modifier": { "op": "granddad_or_long_distance_capture_moment", "moment": { "name": "CALLING THE OLD MAN", "flavor": "Of course he knew." } }
+    },
+    {
+      "id": "his-mothers-birthday",
+      "name": "His Mother's Birthday",
+      "tone": "generational",
+      "flavor": "She loved that song. The kid knew the song before they knew her. That's how it goes.",
+      "modifier": { "op": "discard_to_family_zone_free", "moment": { "name": "HIS MOTHER'S BIRTHDAY", "flavor": "The kid knew the song before they knew her." } }
+    },
+    {
+      "id": "the-family-reunion",
+      "name": "The Family Reunion",
+      "tone": "generational",
+      "flavor": "Three generations. One backyard. The kid asked who that man was. You told them their great-uncle. They asked again. Long story.",
+      "modifier": { "op": "resonance_double_in_zone", "zone": "family" }
+    },
+    {
+      "id": "the-quiet-year",
+      "name": "The Quiet Year",
+      "tone": "hard",
+      "flavor": "Nobody had anywhere to be. Nobody filled the silence. It was hard. It was good.",
+      "modifier": { "op": "non_active_double_activate", "family_zone_immune_disruption": true }
+    },
+    {
+      "id": "the-recovery-year",
+      "name": "The Recovery Year",
+      "tone": "hard",
+      "flavor": "Some years you come back from. This was one. 'I am not the man I was last year. That is the work.'",
+      "modifier": { "op": "free_persisting_bring_back_once" }
+    },
+    {
+      "id": "the-first-real-talk",
+      "name": "The First Real Talk",
+      "tone": "hard",
+      "flavor": "You sat with them for an hour. You didn't have answers. You stayed.",
+      "modifier": { "op": "listening_capture_moment", "moment": { "name": "FIRST REAL TALK", "flavor": "You sat with them. You stayed." }, "family_strength_bonus": 1, "no_missed_year_this_turn": true }
+    }
+  ]
+}

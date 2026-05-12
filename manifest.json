@@ -1,9 +1,10 @@
 {
-  "name": "App Name",
-  "short_name": "AppName",
+  "name": "Dad TCG",
+  "short_name": "Dad TCG",
+  "description": "A trading card game where every card is an original dad archetype. Warm core, witty surface. Play solo, pass-and-play, or online.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#0047FF",
+  "background_color": "#FAF6EE",
+  "theme_color": "#C2562F",
   "icons": []
 }

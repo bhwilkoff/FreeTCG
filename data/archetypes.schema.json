@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dad-tcg.example/schemas/archetypes.json",
+  "title": "Dad TCG Archetype Catalog",
+  "description": "Canonical list of dad archetypes. Each archetype is a character (The Coach, The Tinkerer, etc.) anchoring a small group of cards. Schema v0.2 (2026-05-08): updated to use locked 18-virtue vocabulary (D022) and 6-faction structure (D014).",
+  "type": "object",
+  "required": ["schemaVersion", "archetypes"],
+  "properties": {
+    "schemaVersion": { "type": "string", "examples": ["0.2.0"] },
+    "archetypes": { "type": "array", "items": { "$ref": "#/$defs/archetype" } }
+  },
+  "$defs": {
+    "archetype": {
+      "type": "object",
+      "required": ["id", "name", "faction", "tags", "homeZone", "tagline", "flavor", "mechanicalHook"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "description": "Stable slug; never changes after publication."
+        },
+        "name": { "type": "string" },
+        "faction": {
+          "type": "string",
+          "enum": ["Presence", "Connection", "Growth", "Agency", "Integrity", "Resilience"]
+        },
+        "tags": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": { "$ref": "#/$defs/virtueTag" }
+        },
+        "homeZone": {
+          "type": "string",
+          "enum": ["family", "craft", "community"],
+          "description": "The zone this archetype tends to play into. Cards can be played to other zones; this is the canonical home."
+        },
+        "playTag": {
+          "type": "boolean",
+          "default": false,
+          "description": "Does this archetype carry the Play cross-cutting tag?"
+        },
+        "tagline": { "type": "string", "maxLength": 120 },
+        "flavor": { "type": "string", "maxLength": 240 },
+        "mechanicalHook": { "type": "string", "maxLength": 280 },
+        "image": { "type": ["string", "null"], "default": null }
+      }
+    },
+    "virtueTag": {
+      "type": "string",
+      "enum": [
+        "Showing-Up", "Listening", "Holding",
+        "Welcoming", "Asking", "Thanking",
+        "Wondering", "Trying", "Teaching",
+        "Choosing", "Advocating", "Naming",
+        "Owning", "Mending", "Forgiving",
+        "Adapting", "Tending", "Persisting"
+      ]
+    }
+  }
+}

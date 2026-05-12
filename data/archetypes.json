@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "0.2.0",
+  "archetypes": [
+    {
+      "id": "the-steady-hand",
+      "name": "The Steady Hand",
+      "faction": "Presence",
+      "tags": ["Showing-Up", "Holding"],
+      "homeZone": "family",
+      "playTag": false,
+      "tagline": "Calm finds him before the storm does.",
+      "flavor": "Breathe. We've been worse off than this. I'll show you how.",
+      "mechanicalHook": "Friendly cards in his zone are immune to opponent's tax_attention and arrange ops while he's there. Absorbed v1's Quiet Type."
+    },
+    {
+      "id": "the-listener",
+      "name": "The Listener",
+      "faction": "Presence",
+      "tags": ["Listening", "Asking"],
+      "homeZone": "family",
+      "playTag": false,
+      "tagline": "Doesn't fix what doesn't need fixing.",
+      "flavor": "I'm not going to tell you what I'd do. Tell me again what happened.",
+      "mechanicalHook": "Activated: tap, pay 1 Attention to look at top of opponent's deck and replace it. Information without disturbance."
+    },
+    {
+      "id": "the-cook",
+      "name": "The Cook",
+      "faction": "Presence",
+      "tags": ["Tending", "Holding"],
+      "homeZone": "family",
+      "playTag": true,
+      "tagline": "Sundays are sacred.",
+      "flavor": "The secret is butter. The other secret is more butter.",
+      "mechanicalHook": "onEnter: restore 1 Attention to next turn. Moment SUNDAY DINNER fires when Cook + Kin share zone for two consecutive turns."
+    },
+    {
+      "id": "the-storyteller",
+      "name": "The Storyteller",
+      "faction": "Connection",
+      "tags": ["Welcoming", "Thanking"],
+      "homeZone": "community",
+      "playTag": false,
+      "tagline": "Memory is a kind of time travel.",
+      "flavor": "Did I ever tell you about your grandfather? Sit down. This one matters.",
+      "mechanicalHook": "Activated: tap, pay 1 Attention to name a virtue you've Practiced; capture a Moment named after it."
+    },
+    {
+      "id": "the-long-distance-dad",
+      "name": "The Long-Distance Dad",
+      "faction": "Connection",
+      "tags": ["Asking", "Thanking"],
+      "homeZone": "community",
+      "playTag": false,
+      "tagline": "Voice on the phone. Letter in the mail.",
+      "flavor": "I miss the breakfast. The breakfast knows.",
+      "mechanicalHook": "onEnter: even with no zone slots, places into 'the road' for one turn (peeking opponent deck), then enters chosen zone."
+    },
+    {
+      "id": "the-big-brother-dad",
+      "name": "The Big Brother Dad",
+      "faction": "Connection",
+      "tags": ["Welcoming", "Teaching"],
+      "homeZone": "family",
+      "playTag": false,
+      "tagline": "Older sibling who stepped up before he was ready.",
+      "flavor": "I figured it out as I went. You'll do better, because I went first.",
+      "mechanicalHook": "onEnter: target friendly Kin gains +1 Maturity AND a virtue tag of your choice that you've already Practiced."
+    },
+    {
+      "id": "the-player",
+      "name": "The Player",
+      "faction": "Growth",
+      "tags": ["Trying", "Wondering"],
+      "homeZone": "family",
+      "playTag": true,
+      "tagline": "Keeps the goofy alive.",
+      "flavor": "Hot lava! HOT LAVA. The couch is the only safe place. Has been since you were four.",
+      "mechanicalHook": "onEnter: look at top 3 of deck; play one at -1 Attention. Moment HOT LAVA fires if 3+ Play-tagged cards share his zone."
+    },
+    {
+      "id": "the-granddad",
+      "name": "The Granddad",
+      "faction": "Growth",
+      "tags": ["Teaching", "Persisting"],
+      "homeZone": "family",
+      "playTag": false,
+      "tagline": "Has seen this all before. Still gentle about it.",
+      "flavor": "Your dad did this same thing. Don't tell him I told you.",
+      "mechanicalHook": "Passive: Persisting effects cost -1. onEnter: capture SUNDAY COMICS Moment if Kin in any zone. Bidirectional teaching candidate."
+    },
+    {
+      "id": "the-in-progress-dad",
+      "name": "The In-Progress Dad",
+      "faction": "Growth",
+      "tags": ["Trying", "Wondering"],
+      "homeZone": "craft",
+      "playTag": false,
+      "tagline": "Still figuring it out. Out loud.",
+      "flavor": "I'm learning to be a better person every day. I cannot change the past. I can only course correct.",
+      "mechanicalHook": "Passive: gains a Growth counter each turn you Practice a new virtue. With 3+ counters, your Trying-tagged cards cost -1."
+    },
+    {
+      "id": "the-coach",
+      "name": "The Coach",
+      "faction": "Agency",
+      "tags": ["Advocating", "Trying"],
+      "homeZone": "community",
+      "playTag": false,
+      "tagline": "Believes in you before you do.",
+      "flavor": "You miss 100% of the shots. So take it. I've got the rebound.",
+      "mechanicalHook": "Passive: when you play another card in his zone, that card's onEnter runs at +1 strength. Moment PEP TALK with Kin in zone."
+    },
+    {
+      "id": "the-adventurer",
+      "name": "The Adventurer",
+      "faction": "Agency",
+      "tags": ["Choosing", "Wondering"],
+      "homeZone": "community",
+      "playTag": true,
+      "tagline": "Get in the car. We're going.",
+      "flavor": "I don't know where the road goes. That's the best part of any road.",
+      "mechanicalHook": "onEnter: move one of your other cards from any zone to a different zone, free. Moment SURPRISE TRIP if all cards moved this turn."
+    },
+    {
+      "id": "the-advocate",
+      "name": "The Advocate",
+      "faction": "Agency",
+      "tags": ["Advocating", "Naming"],
+      "homeZone": "craft",
+      "playTag": false,
+      "tagline": "Stands between, speaks up, calls the coach.",
+      "flavor": "I see you. I see what you're doing. I'm asking nicely once.",
+      "mechanicalHook": "onEnter: protect a friendly card from disruption all match. Activated once per match: name a virtue you've Practiced; mark it Practiced for opponent too."
+    },
+    {
+      "id": "the-stepdad",
+      "name": "The Stepdad",
+      "faction": "Integrity",
+      "tags": ["Choosing", "Persisting"],
+      "homeZone": "family",
+      "playTag": false,
+      "tagline": "Chose you. Keeps choosing.",
+      "flavor": "I don't have to be here. That's the point.",
+      "mechanicalHook": "Passive: counts as carrying any virtue tag held by a friendly Kin in his zone (for Resonance purposes)."
+    },
+    {
+      "id": "the-late-dad",
+      "name": "The Late Dad",
+      "faction": "Integrity",
+      "tags": ["Owning", "Forgiving"],
+      "homeZone": "family",
+      "playTag": false,
+      "tagline": "Gone. Still teaching.",
+      "flavor": "Take what he gave you. The rest, let go.",
+      "mechanicalHook": "Starts in your discard at match setup (not drawn). Once per match playable from discard at no cost; on entry, all your other cards gain +1 next effect AND you Practice Forgiving."
+    },
+    {
+      "id": "the-conscious-dad",
+      "name": "The Conscious Dad",
+      "faction": "Integrity",
+      "tags": ["Owning", "Naming"],
+      "homeZone": "craft",
+      "playTag": false,
+      "tagline": "Notices what he didn't notice yesterday.",
+      "flavor": "The story I'm telling myself is that I overreacted. Now let me check.",
+      "mechanicalHook": "onEnter: reveal opponent's hand; opponent draws 1. Passive: while in play, your Naming-tagged plays mark the named virtue Practiced for both players."
+    },
+    {
+      "id": "the-tinkerer",
+      "name": "The Tinkerer",
+      "faction": "Resilience",
+      "tags": ["Mending", "Adapting"],
+      "homeZone": "craft",
+      "playTag": true,
+      "tagline": "Fixes the wrong thing first. The right thing eventually.",
+      "flavor": "Replaces the wrong washer. Floods the basement. Laughs first. Then fixes it.",
+      "mechanicalHook": "Activated: tap, pay 1 Attention to return a card from your discard to hand. The dad-action of Mending."
+    },
+    {
+      "id": "the-single-dad",
+      "name": "The Single Dad",
+      "faction": "Resilience",
+      "tags": ["Persisting", "Adapting"],
+      "homeZone": "family",
+      "playTag": false,
+      "tagline": "Holds the whole sky up.",
+      "flavor": "It's just us. We're going to be just fine. We always are. Three sandwiches at 10pm. A note in the napkin.",
+      "mechanicalHook": "onEnter: costs 1 less if no other Dad cards are in your zones. Passive: Tending-tagged cards refresh +1 Attention next turn."
+    },
+    {
+      "id": "the-recovery-dad",
+      "name": "The Recovery Dad",
+      "faction": "Resilience",
+      "tags": ["Mending", "Persisting"],
+      "homeZone": "craft",
+      "playTag": false,
+      "tagline": "Came back. Stays back.",
+      "flavor": "I am not the man I was last year. That is the work.",
+      "mechanicalHook": "Special: when discarded, once per match may return to a chosen zone at -1 effective stat. Passive: while in play, your Mending and Persisting cards capture RETURNED Moment."
+    }
+  ]
+}

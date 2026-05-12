@@ -1,0 +1,292 @@
+{
+  "schemaVersion": "0.2.0",
+  "_note": "Sample card pool slice (12 cards) demonstrating the schema in action. The full M1 pool will be 60-80 cards (18 portraits + actions + tools + Kin). These 12 are the simulator's first deck and the engine's first integration test.",
+  "cards": [
+    {
+      "id": "the-listener-portrait",
+      "name": "The Listener",
+      "type": "dad",
+      "archetypeId": "the-listener",
+      "faction": "Presence",
+      "tags": ["Listening", "Asking"],
+      "playTag": false,
+      "cost": 2,
+      "pitchValue": 2,
+      "rarity": "common",
+      "rulesText": "Activated: Tap, pay 1 Attention. Look at the top card of opponent's deck and put it back.",
+      "flavorText": "I'm not going to tell you what I'd do. Tell me again what happened.",
+      "effects": {
+        "activated": [
+          {
+            "name": "Listen Closely",
+            "cost": { "attention": 1, "tap": true },
+            "ops": [
+              { "op": "reveal", "count": 1, "from": "opp_deck" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "the-storyteller-portrait",
+      "name": "The Storyteller",
+      "type": "dad",
+      "archetypeId": "the-storyteller",
+      "faction": "Connection",
+      "tags": ["Welcoming", "Thanking"],
+      "playTag": false,
+      "cost": 3,
+      "pitchValue": 2,
+      "rarity": "uncommon",
+      "rulesText": "Activated: Tap, pay 1 Attention. Name a virtue you've Practiced. Capture a Moment named after it.",
+      "flavorText": "Did I ever tell you about your grandfather? Sit down. This one matters.",
+      "effects": {
+        "activated": [
+          {
+            "name": "Tell It Again",
+            "cost": { "attention": 1, "tap": true },
+            "ops": [
+              {
+                "op": "choose",
+                "prompt": "Name a virtue you've Practiced this match.",
+                "options": "self.practiced_virtues",
+                "chooser": "self"
+              },
+              {
+                "op": "capture_moment",
+                "name": "TOLD_AGAIN",
+                "flavor": "He told the story so often that the kid started telling it back."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "the-in-progress-dad-portrait",
+      "name": "The In-Progress Dad",
+      "type": "dad",
+      "archetypeId": "the-in-progress-dad",
+      "faction": "Growth",
+      "tags": ["Trying", "Wondering"],
+      "playTag": false,
+      "cost": 2,
+      "pitchValue": 2,
+      "rarity": "common",
+      "rulesText": "Each turn you Practice a new virtue, gain a Growth counter. With 3+ counters, your Trying cards cost -1.",
+      "flavorText": "I'm learning to be a better person every day. I cannot change the past. I can only course correct.",
+      "effects": {
+        "passive": [
+          {
+            "op": "gain_growth_counter_per_new_virtue_practiced",
+            "self": true
+          },
+          {
+            "op": "if",
+            "cond": { "type": "self_growth_counters", "op": ">=", "value": 3 },
+            "then": [
+              { "op": "modify_cost", "filter": { "tag": "Trying", "controller": "self" }, "delta": -1 }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "the-coach-portrait",
+      "name": "The Coach",
+      "type": "dad",
+      "archetypeId": "the-coach",
+      "faction": "Agency",
+      "tags": ["Advocating", "Trying"],
+      "playTag": false,
+      "cost": 3,
+      "pitchValue": 2,
+      "rarity": "common",
+      "rulesText": "While in play, friendly cards entering this zone get +1 to their first effect.",
+      "flavorText": "You miss 100% of the shots. So take it. I've got the rebound.",
+      "effects": {
+        "passive": [
+          {
+            "op": "boost_friendly_enter_in_zone",
+            "from": "this",
+            "delta": 1
+          }
+        ]
+      },
+      "moment": {
+        "name": "PEP TALK",
+        "trigger": { "when": "after_play_in_same_zone", "filter": { "kin_in_same_zone_as": "this" } },
+        "flavor": "You miss 100% of the shots. So take it. I've got the rebound."
+      }
+    },
+    {
+      "id": "the-stepdad-portrait",
+      "name": "The Stepdad",
+      "type": "dad",
+      "archetypeId": "the-stepdad",
+      "faction": "Integrity",
+      "tags": ["Choosing", "Persisting"],
+      "playTag": false,
+      "cost": 2,
+      "pitchValue": 2,
+      "rarity": "uncommon",
+      "rulesText": "Counts as carrying every virtue tag of friendly Kin sharing his zone (for Resonance only).",
+      "flavorText": "I don't have to be here. That's the point.",
+      "effects": {
+        "passive": [
+          { "op": "borrow_kin_tags_for_resonance", "from": "same_zone" }
+        ]
+      }
+    },
+    {
+      "id": "the-tinkerer-portrait",
+      "name": "The Tinkerer",
+      "type": "dad",
+      "archetypeId": "the-tinkerer",
+      "faction": "Resilience",
+      "tags": ["Mending", "Adapting"],
+      "playTag": true,
+      "cost": 2,
+      "pitchValue": 2,
+      "rarity": "common",
+      "rulesText": "Activated: Tap, pay 1 Attention. Return a card from your discard to your hand.",
+      "flavorText": "Replaces the wrong washer. Floods the basement. Laughs first. Then fixes it.",
+      "effects": {
+        "activated": [
+          {
+            "name": "Jury-Rig",
+            "cost": { "attention": 1, "tap": true },
+            "ops": [
+              { "op": "recall", "count": 1, "from": "self_discard" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "what-do-you-think",
+      "name": "What Do You Think?",
+      "type": "action",
+      "archetypeId": null,
+      "faction": "Connection",
+      "tags": ["Asking", "Wondering"],
+      "playTag": false,
+      "cost": 1,
+      "pitchValue": 1,
+      "rarity": "common",
+      "rulesText": "Reveal opponent's hand. Both players draw 1 card. (You ask the question; everyone learns something.)",
+      "flavorText": "I don't know. What do you think?",
+      "effects": {
+        "onEnter": [
+          { "op": "reveal", "count": "all", "from": "opp_hand" },
+          { "op": "draw", "count": 1, "target": "self" },
+          { "op": "draw", "count": 1, "target": "opp" }
+        ]
+      }
+    },
+    {
+      "id": "burned-the-first-one",
+      "name": "Burned the First One",
+      "type": "action",
+      "archetypeId": null,
+      "faction": "Resilience",
+      "tags": ["Trying", "Tending"],
+      "playTag": true,
+      "cost": 1,
+      "pitchValue": 1,
+      "rarity": "common",
+      "rulesText": "Discard one card from your hand. Draw two cards.",
+      "flavorText": "Burnt the first one. Got the second one right. The kid ate three.",
+      "effects": {
+        "onEnter": [
+          { "op": "discard", "count": 1, "from": "self_hand", "chosen_by": "self" },
+          { "op": "draw", "count": 2 }
+        ]
+      }
+    },
+    {
+      "id": "pep-talk",
+      "name": "Pep Talk",
+      "type": "action",
+      "archetypeId": "the-coach",
+      "faction": "Agency",
+      "tags": ["Advocating", "Trying"],
+      "playTag": false,
+      "cost": 2,
+      "pitchValue": 1,
+      "rarity": "common",
+      "rulesText": "Target friendly Kin gains +2 Maturity. Capture a PEP TALK Moment if a Coach-tagged card is in any zone.",
+      "flavorText": "You're going to be fine. You're going to be better than fine. I'll be there either way.",
+      "effects": {
+        "onEnter": [
+          { "op": "mature_kin", "target": { "filter": { "type": "kin", "controller": "self" } }, "amount": 2 }
+        ]
+      },
+      "moment": {
+        "name": "PEP TALK",
+        "trigger": { "when": "after_play", "filter": { "card_in_play": { "tag": "Advocating", "controller": "self" } } },
+        "flavor": "You miss 100% of the shots. So take it. I've got the rebound."
+      }
+    },
+    {
+      "id": "take-the-long-way-home",
+      "name": "Take the Long Way Home",
+      "type": "action",
+      "archetypeId": "the-steady-hand",
+      "faction": "Presence",
+      "tags": ["Holding", "Showing-Up"],
+      "playTag": false,
+      "cost": 1,
+      "pitchValue": 1,
+      "rarity": "common",
+      "rulesText": "Until end of turn, your cards in Your Family are immune to opponent's tax_attention and arrange ops.",
+      "flavorText": "Drove the long way. Didn't say why. The kid figured it out.",
+      "effects": {
+        "onEnter": [
+          {
+            "op": "prevent_disruption",
+            "target": { "filter": { "controller": "self", "in_zone": "family" } },
+            "duration": "turn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "the-toolbelt",
+      "name": "The Toolbelt",
+      "type": "tool",
+      "archetypeId": null,
+      "faction": "Resilience",
+      "tags": ["Mending"],
+      "playTag": false,
+      "cost": 1,
+      "pitchValue": 1,
+      "rarity": "common",
+      "attachTo": "dad",
+      "rulesText": "Attach to a Dad card you control. The Dad gains the Mending tag (if not already) and +1 Pitch value.",
+      "flavorText": "Still has the same hammer. Still loses the same screwdriver. Always finds it.",
+      "effects": {
+        "passive": [
+          { "op": "add_tag", "target": "attached", "tag": "Mending", "duration": "permanent" },
+          { "op": "modify_pitch", "target": "attached", "delta": 1 }
+        ]
+      }
+    },
+    {
+      "id": "the-eldest",
+      "name": "The Eldest",
+      "type": "kin",
+      "archetypeId": null,
+      "faction": null,
+      "tags": [],
+      "playTag": false,
+      "cost": 2,
+      "pitchValue": 0,
+      "rarity": "common",
+      "maxMaturity": 18,
+      "rulesText": "When a Dad activates in The Eldest's zone, gains 1 Maturity and records that Dad's virtue tags. At end of match, count up to (Maturity) distinct recorded virtues you haven't Practiced; mark each Practiced.",
+      "flavorText": "They're watching you. They've been watching for a while.",
+      "effects": {}
+    }
+  ]
+}

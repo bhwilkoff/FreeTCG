@@ -1,0 +1,11 @@
+{
+  "name": "dad-tcg",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Dad TCG — a positive-fatherhood card game. Vanilla ES modules; no build, no npm dependencies. The 'type': 'module' flag below tells Node to load .js files as ESM (matching browser behavior). Run tests with: node js/engine.test.js",
+  "type": "module",
+  "scripts": {
+    "test": "node js/engine.test.js",
+    "sim": "node js/sim.js"
+  }
+}

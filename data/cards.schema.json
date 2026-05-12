@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dad-tcg.example/schemas/cards.json",
+  "title": "Dad TCG Card Catalog",
+  "description": "Playable card pool. Schema v0.2 (2026-05-08): updated against locked Decisions D011-D030 and EFFECTS.md DSL spec.",
+  "type": "object",
+  "required": ["schemaVersion", "cards"],
+  "properties": {
+    "schemaVersion": { "type": "string", "examples": ["0.2.0"] },
+    "cards": { "type": "array", "items": { "$ref": "#/$defs/card" } }
+  },
+  "$defs": {
+    "card": {
+      "type": "object",
+      "required": ["id", "name", "type", "cost", "pitchValue", "rulesText"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["dad", "kin", "action", "tool"] },
+        "archetypeId": { "type": ["string", "null"], "description": "References archetypes.json entry. Null for generic cards (Tools/Actions not bound to an archetype, generic Kin)." },
+        "faction": {
+          "type": ["string", "null"],
+          "enum": ["Presence", "Connection", "Growth", "Agency", "Integrity", "Resilience", null],
+          "description": "Null for Kin cards (Kin take their virtue tags from the dads who raise them)."
+        },
+        "tags": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/virtueTag" },
+          "maxItems": 2
+        },
+        "playTag": { "type": "boolean", "default": false },
+        "cost": { "type": "integer", "minimum": 0 },
+        "pitchValue": { "type": "integer", "minimum": 0 },
+        "rarity": { "type": "string", "enum": ["common", "uncommon", "rare", "signature"], "default": "common" },
+        "rulesText": { "type": "string", "maxLength": 280 },
+        "flavorText": { "type": ["string", "null"], "maxLength": 200 },
+        "image": { "type": ["string", "null"], "default": null },
+        "attachTo": { "type": ["string", "null"], "enum": ["dad", null], "description": "Tool cards only" },
+        "maxMaturity": { "type": ["integer", "null"], "minimum": 0, "description": "Kin cards only" },
+        "effects": { "$ref": "#/$defs/effects" },
+        "moment": { "$ref": "#/$defs/momentHook" }
+      }
+    },
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "onEnter": { "type": "array", "items": { "type": "object" } },
+        "passive": { "type": "array", "items": { "type": "object" } },
+        "activated": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["cost", "ops"],
+            "properties": {
+              "name": { "type": "string" },
+              "cost": {
+                "type": "object",
+                "properties": {
+                  "attention": { "type": "integer", "minimum": 0 },
+                  "tap": { "type": "boolean" },
+                  "discard": { "type": "integer", "minimum": 0 }
+                }
+              },
+              "ops": { "type": "array", "items": { "type": "object" } }
+            }
+          }
+        }
+      }
+    },
+    "momentHook": {
+      "type": "object",
+      "required": ["name", "trigger"],
+      "properties": {
+        "name": { "type": "string" },
+        "trigger": { "type": "object" },
+        "flavor": { "type": "string", "maxLength": 200 }
+      }
+    },
+    "virtueTag": {
+      "type": "string",
+      "enum": [
+        "Showing-Up", "Listening", "Holding",
+        "Welcoming", "Asking", "Thanking",
+        "Wondering", "Trying", "Teaching",
+        "Choosing", "Advocating", "Naming",
+        "Owning", "Mending", "Forgiving",
+        "Adapting", "Tending", "Persisting"
+      ]
+    }
+  }
+}
